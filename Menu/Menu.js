@@ -59,6 +59,9 @@ function createMenu(menuItems) {
 
 const menuSelect = document.querySelector('.menu-button');
 menuSelect.addEventListener('click', () => {
+  TweenMax.to('.menu', 1, {rotation:360,});
+  
+
   console.log('menu-toggle');
 
   const menudiv = document.querySelector('.menu');
