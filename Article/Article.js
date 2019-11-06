@@ -85,6 +85,14 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Douglas Adams',
+    date: 'Nov 6th, 2019',
+    firstParagraph: `In his best-known work, The Hitchhiker’s Guide to the Galaxy, there\’s also one of the most-known Douglas Adams quotes, wherein he explained the supreme utility of the towel in intergalactic travel:
+    “…it has great practical value – you can wrap it around you for warmth as you bound across the cold moons of Jaglan Beta; you can lie on it on the brilliant marble-sanded beaches of Santraginus V, inhaling the heady sea vapours; you can sleep under it beneath the stars which shine so redly on the desert world of Kakrafoon; use it to sail a mini raft down the slow heavy river Moth; wet it for use in hand-to-hand-combat; wrap it round your head to ward off noxious fumes or to avoid the gaze of the Ravenous Bugblatter Beast of Traal (a mindboggingly stupid animal, it assumes that if you can’t see it, it can’t see you – daft as a bush, but very, very ravenous); you can wave your towel in emergencies as a distress signal, and of course dry yourself off with it if it still seems to be clean enough.” `,
+    secondParagraph: `There is a theory which states that if ever anyone discovers exactly what the Universe is for and why it is here, it will instantly disappear and be replaced by something even more bizarre and inexplicable. There is another theory which states that this has already happened.`,
+    thirdParagraph: `“Space,” it says, “is big. Really big. You just won’t believe how vastly, hugely, mindbogglingly big it is. I mean, you may think it’s a long way down the road to the chemist’s, but that’s just peanuts to space.”`
   }
 ];
 
@@ -112,3 +120,49 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+function createArticle(title, date, content1, content2, content3) {
+  // define new elements
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articleContent1 = document.createElement('p');
+  const articleContent2 = document.createElement('p');
+  const articleContent3 = document.createElement('p');
+  const expand = document.createElement('span');
+
+  
+  // Setup structure of elements
+  article.appendChild(articleTitle)
+  article.appendChild(articleDate)
+  article.appendChild(articleContent1)
+  article.appendChild(articleContent2)
+  article.appendChild(articleContent3)
+  article.appendChild(expand)
+  
+  // set class names
+  article.classList.add('article')
+  articleDate.classList.add('date')
+  expand.classList.add('expandButton')
+ 
+  // set text content
+  articleTitle.textContent = title
+  articleDate.textContent = date
+  articleContent1.textContent = content1
+  articleContent2.textContent = content2
+  articleContent3.textContent = content3
+
+  // add event handler
+  article.addEventListener('click', () => {
+    console.log('clicked button!');
+    article.classList.toggle('article-open');
+  });
+  
+  return article;
+}
+
+const article = document.querySelector('.articles');
+
+data.forEach(data => {
+  console.log('creating article:');
+  article.appendChild(createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph));
+});
